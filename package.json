@@ -1,0 +1,32 @@
+{
+  "name": "first-project---copy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "scss": "sass src/sass:dist/css",
+    "concat:js": "concat-glob-cli -f src/js/**/*.js -o dist/js/bundle.js",
+    "cssmin": "cleancss -o dist/css/style.min.css dist/css/style.css",
+    "uglify": "uglifyjs -o dist/js/bundle.min.js dist/js/bundle.js",
+    "build:css": "npm run scss && npm run cssmin",
+    "build:js": "npm run concat:js && npm run uglify",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "onchange 'src/sass/**/*.scss' -- npm run build:css",
+    "watch:js": "onchange 'src/js/**/*.js' -- npm run build:js",
+    "reload": "reload -b",
+    "watch": "npm-run-all --parallel watch:js watch:css reload"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.49.7",
+    "clean-css-cli": "^5.5.0",
+    "concat": "^1.0.3",
+    "concat-glob-cli": "^0.1.0",
+    "npm": "^8.3.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "uglify-js": "^3.14.5",
+    "reload": "^3.2.0"
+  }
+}
